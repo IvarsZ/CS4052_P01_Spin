@@ -1,34 +1,20 @@
+#define N 3
 
+byte a[N];
+chan nextProcess=[0] of {int};
 
-byte x = 0;
-byte y = 0;
-byte z = 0;
+active [N] proctype incrementN() provided {
+  int n;
 
-chan toY=[0] of {bool};
-chan toX=[0] of {bool};
-
-active proctype incrementX() {
   do
-  ::toX?true ->
+  ::nextProcess?n ->
     if
-    :: x < 3 -> x++; toY!true;
-    :: else -> break;
-    fi;
-  od;
-}
-
-active proctype incrementY() {
-  do
-  ::toY?true ->
-    if
-    :: y < 3 -> y++; toX!true;
+    :: a[n] < 3 -> a[n]++; nextProcess!((n+1) % N);
     :: else -> break;
     fi;
   od;
 }
 
 init {
-  toX!true
+  nextProcess!0;
 }
-
-
