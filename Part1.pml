@@ -1,20 +1,18 @@
 #define N 3
 
 byte a[N];
-chan nextProcess=[0] of {int};
+int next = 0;
 
-active [N] proctype incrementN() provided {
-  int n;
-
+active [N] proctype incrementN() {
   do
-  ::nextProcess?n ->
+  ::(next == _pid) ->  
     if
-    :: a[n] < 3 -> a[n]++; nextProcess!((n+1) % N);
+    :: a[next] < 10 -> 
+    atomic {
+      a[next]++;
+      next = (next + 1) % N;
+    }
     :: else -> break;
     fi;
   od;
-}
-
-init {
-  nextProcess!0;
 }
