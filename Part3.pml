@@ -19,8 +19,8 @@ active proctype P3(){
   od;
 }
 
-ltl prop1 {<>x != 10}
-ltl prop2 {<>[] x % 2 == 1 }
-ltl prop3 {<>[]<> x % 2 == 1 }
+ltl prop1 {<>(x != 10)}
+ltl prop2 {[](<> (x % 2 == 0)) }
+ltl prop3 {<>([] (x % 2 == 0)) }
 ltl prop4 {[] y <= x }
 ltl prop5 {[] (y == x -> <>(y != x))}

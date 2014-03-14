@@ -1,0 +1,106 @@
+\documentclass{article}
+
+\usepackage{fixltx2e}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{cite}
+
+\title{Practical 1: PROMELA and SPIN}
+\author{100014525}
+\date{March 2014}
+
+\begin{document}
+\maketitle
+
+\section*{Part 1}
+
+In part one there are N processes that increment an array of integers initially set to 0 (by default). Each process increments exactly one variable of the array from 0 to 10 (inclusive) by 1. The processes take turns in the following order P0, P2, .., P(N-1), then P1, P2, .. P(N-1) again and so on. To achieve this a process with id i increments the i-th variable of the array and a global variable next is used to 
+determine which process progresses and therefore which entry of array is incremented.
+
+\section*{Part 2}
+
+In part two there are 4 processes Sender, Receiver, Intermediate1 and Intermediate2. The Sender sends values from 1 to 10, inclusive and in order to the Receiver, but it does so through Intermediate1 or Intermediate2. For each value Intermediate1 or Intermediate2 process is nondeterministically selected. In addition each intermediate process calculates the sum of values sent through using global variables $sum1$ and $sum2$, respectively. The transmission is done using a separate channel for sending values to each intermediate process, $sendInt1$ and $sendInt2$, respectively, and another channel $receive$ for receiving values in the receiver. The capacity of all channels is the same.
+
+The larger the capacity the more likely it is for the sent values to be received out of order. For example when ispin simulation is run with seeds from 1 to 10 and capacity 0, only for seeds 3, 7, 10 variables were received out of order. Moreover it's only a swap of two adjacent values. When ispin simulation is run with seeds from 1 to 10 and capacity 10, only for seeds 6, 7, 10 variables were received in order. And often the values are more than 1 position away from their sending position.
+
+Note that the values received and sent by intermediate processes are in order. So the values are received out of order in receiver when one of the intermediate processes receives a value and sends it through before the other process has sent a previous value through. This is more likely to happen when processes can queue up multiple values, i.e. channels have higher capacity. Moreover it means that values can be more out of order - the values can be multiple position away from their sending position.
+
+\section*{Part 3}
+
+\subsection*{a}
+The statement x is eventually not 10 is true with our without weak fairness, which holds even already in the initial state. The LTL formula  to check is:
+\begin{equation}
+<>(x != 10)
+\end{equation}
+
+\begin{itemize}
+\item Result of verification without weak fairness: No errors found.
+\item Result of verification with weak fairness: No errors found.
+\end{itemize}
+
+\subsection*{b}
+
+It is possible that from a certain point onwards x is infinitely often odd without weak fairness, but with weak fairness it is impossible. Because when there is no fairness only the P1 process could be progressing and keep x odd. But when weak fairness is enforced the P2 process always eventually progresses and so changes the parity of x.
+
+To check the statement it is possible that from a certain point onwards x is always odd, it is easier to check the contrapositive statement - never x is always odd after certain point. Alternatively, always x is eventually not odd (even). So the LTL formula to check is:
+\begin{equation}
+[](<> (x \mod 2 == 0))
+\end{equation}
+But the original statement is false if no error is found and is true if an error is found, i.e. a trace where from a certain point onwards x is always odd was found, means that it is possible.
+
+\begin{itemize}
+\item Result of verification without weak fairness: Error trail found.
+\item Result of verification with weak fairness: No errors found.
+\end{itemize}
+
+\subsection*{c}
+
+The statement it is possible that from a certain point onwards x is infinitely often odd is true with or without weak fairness, because similarly as before with weak fairness the parity of x always eventually changes and without weak fairness from b we know that it could always stay odd after certain point. The LTL statement to check is contrapositive again:
+\begin{equation}
+<>([] (x \mod 2 == 0))
+\end{equation}
+And the answer from spin has to be negated again.
+
+\begin{itemize}
+\item Result of verification without weak fairness: Error trail found.
+\item Result of verification with weak fairness: Error trail found.
+\end{itemize}
+
+\subsection*{d}
+
+The inequality $y \leq x$ is not always true with or without weak fairness, due to overflow. The LTL formula to check is:
+\begin{equation}
+[](y <= x)
+\end{equation}
+
+\begin{itemize}
+\item Result of verification without weak fairness: Error trail found.
+\item Result of verification with weak fairness: Error trail found.
+\end{itemize}
+
+\subsection*{e}
+
+It is always true that when y = x it follows that at some point $y = x$ with or without weak fairness. Because only P1 or P2 can progress when $y = x$ both of which change only x. The LTL formula to check is:
+\begin{equation}
+[] (y == x \implies <>(y != x))
+\end{equation}
+
+\begin{itemize}
+\item Result of verification without weak fairness: No errors found.
+\item Result of verification with weak fairness: No errors found.
+\end{itemize}
+
+The spin output for this part is saved in part.out file.
+
+\section*{Part 4: Formal verification in SPIN}
+
+Spin is one of the first and most popular model verification tools with fairly broad group of users both in academia and industry. It was developed at Bell labs since 1980 and made freely available on the web since 1991 \cite{strunk2006survey}.
+
+To formally verify a system in Spin a specification of its high-level model is written in Promela, the model specification language of Spin, inspired from C. While the properties to verify are written in Linear temporal logic (LTL). Then the property is compiled to a never claim in Promela in the form of a Büchi automaton \cite{frappier2010comparison}. Since Vardi and Wolper showed in 1983 that any LTL formula can be translated into a Büchi automaton. Then Spin generates an optimized C program to do on-the-fly verification, i.e. Spin avoids the construction of a global state transition graph. After executing it if any counterexamples to the property claims are found, then one can feed those examples back into an interactive simulator of Spin and inspect the model further and fix it \cite{holzmann1997model}.
+
+\bibliographystyle{plain}
+\bibliography{References}
+\end{document}

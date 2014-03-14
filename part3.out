@@ -1,0 +1,483 @@
+verification result:
+spin -a  Part3.pml
+ltl prop1: <> ((x!=10))
+ltl prop2: [] (<> (((x%2)==0)))
+ltl prop3: <> ([] (((x%2)==0)))
+ltl prop4: (332<=x)
+ltl prop5: [] ((! ((y==x))) || (<> ((y!=x))))
+  the model contains 5 never claims: prop5, prop4, prop3, prop2, prop1
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N prop1)
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -w -o pan pan.c
+./pan -m10000  -a -N prop1
+Pid: 7930
+
+(Spin Version 6.2.5 -- 3 May 2013)
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (prop1)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 44 byte, depth reached 0, errors: 0
+        1 states, stored
+        0 states, matched
+        1 transitions (= stored+matched)
+        0 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.000	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.286	actual memory usage for states
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  128.730	total actual memory usage
+
+
+unreached in proctype P1
+	Part3.pml:8, state 5, "-end-"
+	(1 of 5 states)
+unreached in proctype P2
+	Part3.pml:14, state 5, "-end-"
+	(1 of 5 states)
+unreached in proctype P3
+	Part3.pml:18, state 2, "y = x"
+	Part3.pml:20, state 6, "-end-"
+	(2 of 6 states)
+unreached in claim prop1
+	_spin_nvr.tmp:6, state 6, "-end-"
+	(1 of 6 states)
+
+pan: elapsed time 0 seconds
+No errors found -- did you verify all claims?
+spin -a  Part3.pml
+ltl prop1: <> ((x!=10))
+ltl prop2: [] (<> (((x%2)==0)))
+ltl prop3: <> ([] (((x%2)==0)))
+ltl prop4: (332<=x)
+ltl prop5: [] ((! ((y==x))) || (<> ((y!=x))))
+  the model contains 5 never claims: prop5, prop4, prop3, prop2, prop1
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N prop1)
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -w -o pan pan.c
+./pan -m10000  -a -f -N prop1
+Pid: 7956
+
+(Spin Version 6.2.5 -- 3 May 2013)
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (prop1)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness enabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 44 byte, depth reached 0, errors: 0
+        1 states, stored
+        0 states, matched
+        1 transitions (= stored+matched)
+        0 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.000	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.286	actual memory usage for states
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  128.730	total actual memory usage
+
+
+unreached in proctype P1
+	Part3.pml:8, state 5, "-end-"
+	(1 of 5 states)
+unreached in proctype P2
+	Part3.pml:14, state 5, "-end-"
+	(1 of 5 states)
+unreached in proctype P3
+	Part3.pml:18, state 2, "y = x"
+	Part3.pml:20, state 6, "-end-"
+	(2 of 6 states)
+unreached in claim prop1
+	_spin_nvr.tmp:6, state 6, "-end-"
+	(1 of 6 states)
+
+pan: elapsed time 0 seconds
+No errors found -- did you verify all claims?
+spin -a  Part3.pml
+ltl prop1: <> ((x!=10))
+ltl prop2: [] (<> (((x%2)==0)))
+ltl prop3: <> ([] (((x%2)==0)))
+ltl prop4: (332<=x)
+ltl prop5: [] ((! ((y==x))) || (<> ((y!=x))))
+  the model contains 5 never claims: prop5, prop4, prop3, prop2, prop1
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N prop1)
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -w -o pan pan.c
+./pan -m10000  -a -N prop2
+Pid: 7979
+pan:1: acceptance cycle (at depth 766)
+pan: wrote Part3.pml.trail
+
+(Spin Version 6.2.5 -- 3 May 2013)
+Warning: Search not completed
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (prop2)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 44 byte, depth reached 1022, errors: 1
+      766 states, stored
+        0 states, matched
+      766 transitions (= stored+matched)
+        0 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.053	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.286	actual memory usage for states
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  128.730	total actual memory usage
+
+
+
+pan: elapsed time 0.01 seconds
+To replay the error-trail, goto Simulate/Replay and select "Run"
+spin -a  Part3.pml
+ltl prop1: <> ((x!=10))
+ltl prop2: [] (<> (((x%2)==0)))
+ltl prop3: <> ([] (((x%2)==0)))
+ltl prop4: (332<=x)
+ltl prop5: [] ((! ((y==x))) || (<> ((y!=x))))
+  the model contains 5 never claims: prop5, prop4, prop3, prop2, prop1
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N prop1)
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -w -o pan pan.c
+./pan -m10000  -a -f -N prop2
+Pid: 8023
+
+(Spin Version 6.2.5 -- 3 May 2013)
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (prop2)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness enabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 44 byte, depth reached 2043, errors: 0
+   261632 states, stored (375808 visited)
+   489859 states, matched
+   865667 transitions (= visited+matched)
+        0 atomic steps
+hash conflicts:      3478 (resolved)
+
+Stats on memory usage (in Megabytes):
+   17.965	equivalent memory usage for states (stored*(State-vector + overhead))
+   12.202	actual memory usage for states (compression: 67.92%)
+         	state-vector as stored = 21 byte + 28 byte overhead
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  140.644	total actual memory usage
+
+
+unreached in proctype P1
+	Part3.pml:8, state 5, "-end-"
+	(1 of 5 states)
+unreached in proctype P2
+	Part3.pml:14, state 5, "-end-"
+	(1 of 5 states)
+unreached in proctype P3
+	Part3.pml:20, state 6, "-end-"
+	(1 of 6 states)
+unreached in claim prop2
+	_spin_nvr.tmp:17, state 13, "-end-"
+	(1 of 13 states)
+
+pan: elapsed time 0.18 seconds
+No errors found -- did you verify all claims?
+spin -a  Part3.pml
+ltl prop1: <> ((x!=10))
+ltl prop2: [] (<> (((x%2)==0)))
+ltl prop3: <> ([] (((x%2)==0)))
+ltl prop4: (332<=x)
+ltl prop5: [] ((! ((y==x))) || (<> ((y!=x))))
+  the model contains 5 never claims: prop5, prop4, prop3, prop2, prop1
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N prop1)
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -w -o pan pan.c
+./pan -m10000  -a -N prop3
+Pid: 8049
+pan:1: acceptance cycle (at depth 1528)
+pan: wrote Part3.pml.trail
+
+(Spin Version 6.2.5 -- 3 May 2013)
+Warning: Search not completed
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (prop3)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 44 byte, depth reached 2295, errors: 1
+     1148 states, stored (1149 visited)
+      130 states, matched
+     1279 transitions (= visited+matched)
+        0 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.079	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.286	actual memory usage for states
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  128.730	total actual memory usage
+
+
+
+pan: elapsed time 0.01 seconds
+To replay the error-trail, goto Simulate/Replay and select "Run"
+spin -a  Part3.pml
+ltl prop1: <> ((x!=10))
+ltl prop2: [] (<> (((x%2)==0)))
+ltl prop3: <> ([] (((x%2)==0)))
+ltl prop4: (332<=x)
+ltl prop5: [] ((! ((y==x))) || (<> ((y!=x))))
+  the model contains 5 never claims: prop5, prop4, prop3, prop2, prop1
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N prop1)
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -w -o pan pan.c
+./pan -m10000  -a -f -N prop3
+Pid: 8073
+pan:1: acceptance cycle (at depth 2046)
+pan: wrote Part3.pml.trail
+
+(Spin Version 6.2.5 -- 3 May 2013)
+Warning: Search not completed
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (prop3)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness enabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 44 byte, depth reached 3835, errors: 1
+     1276 states, stored (2436 visited)
+     1162 states, matched
+     3598 transitions (= visited+matched)
+        0 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.088	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.286	actual memory usage for states
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  128.730	total actual memory usage
+
+
+
+pan: elapsed time 0.01 seconds
+To replay the error-trail, goto Simulate/Replay and select "Run"
+spin -a  Part3.pml
+ltl prop1: <> ((x!=10))
+ltl prop2: [] (<> (((x%2)==0)))
+ltl prop3: <> ([] (((x%2)==0)))
+ltl prop4: (332<=x)
+ltl prop5: [] ((! ((y==x))) || (<> ((y!=x))))
+  the model contains 5 never claims: prop5, prop4, prop3, prop2, prop1
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N prop1)
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -w -o pan pan.c
+./pan -m10000  -a -N prop4
+Pid: 8097
+pan:1: assertion violated  !( !((332<=x))) (at depth 0)
+pan: wrote Part3.pml.trail
+
+(Spin Version 6.2.5 -- 3 May 2013)
+Warning: Search not completed
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (prop4)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 44 byte, depth reached 0, errors: 1
+        1 states, stored
+        0 states, matched
+        1 transitions (= stored+matched)
+        0 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.000	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.286	actual memory usage for states
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  128.730	total actual memory usage
+
+
+
+pan: elapsed time 0.01 seconds
+To replay the error-trail, goto Simulate/Replay and select "Run"
+spin -a  Part3.pml
+ltl prop1: <> ((x!=10))
+ltl prop2: [] (<> (((x%2)==0)))
+ltl prop3: <> ([] (((x%2)==0)))
+ltl prop4: (332<=x)
+ltl prop5: [] ((! ((y==x))) || (<> ((y!=x))))
+  the model contains 5 never claims: prop5, prop4, prop3, prop2, prop1
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N prop1)
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -w -o pan pan.c
+./pan -m10000  -a -f -N prop4
+Pid: 8120
+pan:1: assertion violated  !( !((332<=x))) (at depth 0)
+pan: wrote Part3.pml.trail
+
+(Spin Version 6.2.5 -- 3 May 2013)
+Warning: Search not completed
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (prop4)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness enabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 44 byte, depth reached 0, errors: 1
+        1 states, stored
+        0 states, matched
+        1 transitions (= stored+matched)
+        0 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.000	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.286	actual memory usage for states
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  128.730	total actual memory usage
+
+
+
+pan: elapsed time 0 seconds
+To replay the error-trail, goto Simulate/Replay and select "Run"
+spin -a  Part3.pml
+ltl prop1: <> ((x!=10))
+ltl prop2: [] (<> (((x%2)==0)))
+ltl prop3: <> ([] (((x%2)==0)))
+ltl prop4: (332<=x)
+ltl prop5: [] ((! ((y==x))) || (<> ((y!=x))))
+  the model contains 5 never claims: prop5, prop4, prop3, prop2, prop1
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N prop1)
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -w -o pan pan.c
+./pan -m10000  -a -N prop5
+Pid: 8145
+
+(Spin Version 6.2.5 -- 3 May 2013)
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (prop5)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 44 byte, depth reached 2046, errors: 0
+   132093 states, stored (132858 visited)
+   229247 states, matched
+   362105 transitions (= visited+matched)
+        0 atomic steps
+hash conflicts:       941 (resolved)
+
+Stats on memory usage (in Megabytes):
+    9.070	equivalent memory usage for states (stored*(State-vector + overhead))
+    6.244	actual memory usage for states (compression: 68.84%)
+         	state-vector as stored = 22 byte + 28 byte overhead
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  134.687	total actual memory usage
+
+
+unreached in proctype P1
+	Part3.pml:8, state 5, "-end-"
+	(1 of 5 states)
+unreached in proctype P2
+	Part3.pml:14, state 5, "-end-"
+	(1 of 5 states)
+unreached in proctype P3
+	Part3.pml:20, state 6, "-end-"
+	(1 of 6 states)
+unreached in claim prop5
+	_spin_nvr.tmp:48, state 13, "-end-"
+	(1 of 13 states)
+
+pan: elapsed time 0.06 seconds
+No errors found -- did you verify all claims?
+spin -a  Part3.pml
+ltl prop1: <> ((x!=10))
+ltl prop2: [] (<> (((x%2)==0)))
+ltl prop3: <> ([] (((x%2)==0)))
+ltl prop4: (332<=x)
+ltl prop5: [] ((! ((y==x))) || (<> ((y!=x))))
+  the model contains 5 never claims: prop5, prop4, prop3, prop2, prop1
+  only one claim is used in a verification run
+  choose which one with ./pan -a -N name (defaults to -N prop1)
+gcc -DMEMLIM=1024 -O2 -DXUSAFE -w -o pan pan.c
+./pan -m10000  -a -f -N prop5
+Pid: 8171
+
+(Spin Version 6.2.5 -- 3 May 2013)
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (prop5)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness enabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 44 byte, depth reached 2046, errors: 0
+   132093 states, stored (132348 visited)
+   228992 states, matched
+   361340 transitions (= visited+matched)
+        0 atomic steps
+hash conflicts:       321 (resolved)
+
+Stats on memory usage (in Megabytes):
+    9.070	equivalent memory usage for states (stored*(State-vector + overhead))
+    6.244	actual memory usage for states (compression: 68.84%)
+         	state-vector as stored = 22 byte + 28 byte overhead
+  128.000	memory used for hash table (-w24)
+    0.534	memory used for DFS stack (-m10000)
+  134.687	total actual memory usage
+
+
+unreached in proctype P1
+	Part3.pml:8, state 5, "-end-"
+	(1 of 5 states)
+unreached in proctype P2
+	Part3.pml:14, state 5, "-end-"
+	(1 of 5 states)
+unreached in proctype P3
+	Part3.pml:20, state 6, "-end-"
+	(1 of 6 states)
+unreached in claim prop5
+	_spin_nvr.tmp:48, state 13, "-end-"
+	(1 of 13 states)
+
+pan: elapsed time 0.07 seconds
+No errors found -- did you verify all claims?
+
+

@@ -1,7 +1,7 @@
 #define N 10
-#define CAPACITY 10
+#define CAPACITY 0
 
-int j = 0;
+int j = 1;
 int sum1, sum2;
 
 chan sendInt1 = [CAPACITY] of {int}
